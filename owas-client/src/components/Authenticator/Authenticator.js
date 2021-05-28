@@ -25,9 +25,11 @@ const Authenticator = (props) => {
     return (
         <div className={styles.Authenticator}>
             <h3>Veuillez vous connecter</h3>
-            <input onChange={setEmail} type="email" required={true} placeholder="E-mail"/>
-            <input onChange={setPassword} type="password" required={true} placeholder="Mot de passe"/>
-            <button onClick={Authenticate}>Connection</button>
+            <form>
+                <input onChange={setEmail} type="email" required={true} placeholder="E-mail"/>
+                <input onChange={setPassword} type="password" required={true} placeholder="Mot de passe"/>
+                <input type="submit" onClick={Authenticate} value="Connection"></input>
+            </form>
         </div>
     )
 }
