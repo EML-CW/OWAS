@@ -4,6 +4,7 @@ const fs = require('fs');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
+// Environment variables setup
 const port = 42069 || process.env.PORT;
 const dbHost = "localhost" || process.env.DB_HOST;
 const dbPort = 27017 || process.env.DB_PORT;
@@ -30,7 +31,6 @@ mongoose.connect(`mongodb://${dbHost}:${dbPort}/${dbName}`,{
 })
 
 // Importing databse models
-
 fs.readdirSync(__dirname + '/Models').forEach((file) => {
 	if (~file.indexOf('.js')) {
 		require(`${__dirname}/models/${file}`);
@@ -39,6 +39,9 @@ fs.readdirSync(__dirname + '/Models').forEach((file) => {
 	console.log(`[❌] -- Found ${file}, not a js file, skipped. Please clean up.`)
 })
 
+// Importing Routers
+const authRouter = require('./src/authentication/auth');
+app.use('/', authRouter);
 
 // Sanity check
 app.get('/ping', (req, res) => {
