@@ -1,0 +1,12 @@
+.Home {
+    width: 100%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow: scroll;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}

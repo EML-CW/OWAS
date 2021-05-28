@@ -3,6 +3,8 @@ import Authenticator from "../Authenticator";
 import styles from './app.module.css';
 import axios from 'axios'
 import qs from 'querystring'
+import Home from "../Home/Home";
+import Header from "../Header/Header";
 
 const App = () => {
     const [usrInfo, setUsrInfo] = useState({
@@ -58,7 +60,9 @@ const App = () => {
         )
     return (
         <div className={styles.ContentWrapper}>
-                <p>Hi! Welcome to OWAS!</p>
+                <Home>
+                    <Header/>
+                </Home>
                 <p>Server status: {serverState._isUp ? "Server up!" : "Couldn't fetch server"}</p>
         </div>
     )
