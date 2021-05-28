@@ -39,4 +39,26 @@ Router.post('/newbike', (req,res) => {
     });
 });
 
+Router.post('/deletebike', (req,res) => {
+    if (!req.body.make || !req.body.model || !req.body.token) {
+        res.status(400).send({status: 400, message: "Bad request"});
+        return;
+    }
+    mongoose.model('users').findOne({_arToken: req.body.token}, (err, user) => {
+        if (!user || err) {
+            res.status(500).send({status: 500, message: 'Could not retrieve the user with the specified token'});
+            return;
+        }
+    })
+    mongoose.model('bikes').deleteOne({_bikeMake: req.body.make, _bikeModel: req.body.model}, (err) => {
+        if (!err) {
+            res.status(200).send({status: 200, message:"ok"});
+            return;
+        } else {
+            res.status(404).send({status: 404, message: "Could not find the bike to delete"});
+            return;
+        }
+    })
+})
+
 module.exports = Router;
