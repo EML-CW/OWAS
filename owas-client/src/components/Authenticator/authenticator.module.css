@@ -1,0 +1,33 @@
+.Authenticator {
+    padding: 30px;
+    font-size: 18px;
+    background-color: #202020;
+    color: white;
+    width: 70%;
+    margin: auto;
+    display:grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+}
+
+.Authenticator input {
+    padding: 10px;
+    font-size: 18px;
+    color: white;
+    border: none;
+    background: none;
+    border-radius: 0;
+    border-bottom: 2px solid #1C4E80
+}
+
+.Authenticator button {
+    width: 50%;
+    margin: auto;
+    border: none;
+    font-size: 18px;
+    background: none;
+    background-color: #1C4E80;
+    border-radius: none;
+    color: white;
+    padding: 10px;
+}
