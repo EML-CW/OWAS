@@ -2,11 +2,15 @@
     height: 100%;
     width: 100%;
     position: fixed;
-    animation: fadein 0.3s;
+    font-family: Dosis;
 }
 
-.Hide {
+.Hide .Sidebar {
     animation: fadeout 0.3s;
+}
+
+.Hide .Overlay {
+    animation: fadeoutov 0.3s;
 }
 
 .Sidebar {
@@ -14,11 +18,12 @@
     position: absolute;
     width: 70%;
     height: 100%;
+    animation: fadein 0.3s;
     display: grid;
     grid-template-rows: repeat(10, 1fr);
     grid-gap: 5px;
     min-height: 100%;
-    background: #1C4E80;
+    background: #4877a7;
 }
 
 .Sidebar button {
@@ -41,8 +46,10 @@
 .Overlay {
     position: absolute;
     right: 0;
+    animation: fadeinov 0.3s;
     height: 100%;
     width: 30%;
+    background-color: rgb(255,255,255,0.7)
 }
 
 @-webkit-keyframes fadein {
@@ -53,6 +60,29 @@
 @keyframes fadein {
     from {left: -100%; opacity: 0;}
     to {left: 0; opacity: 1;}
+}
+
+/* Fade in overlay */
+@-webkit-keyframes fadeinov {
+    from {right: -100%; opacity: 0;}
+    to {right: 0; opacity: 1;}
+}
+
+@keyframes fadeinov {
+    from {right: -100%; opacity: 0;}
+    to {right: 0; opacity: 1;}
+}
+
+/* Fade out overlay */
+
+@-webkit-keyframes fadeoutov {
+    from {right: 0; opacity: 1;}
+    to {right: -100%; opacity: 0;}
+}
+
+@keyframes fadeoutov {
+    from {right: 0; opacity: 1;}
+    to {right: -100%; opacity: 0;}
 }
 
 @-webkit-keyframes fadeout {

@@ -1,9 +1,14 @@
 .Authenticator form {
     padding: 30px;
     font-size: 18px;
-    background-color: #202020;
-    color: white;
+    background-color: #ebebeb;
+    color: black;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
     width: 80%;
+
     margin: auto;
     display:grid;
     grid-template-columns: 1fr;
@@ -13,21 +18,22 @@
 .Authenticator input {
     padding: 10px;
     font-size: 18px;
-    color: white;
+    color: black;
     border: none;
     background: none;
     border-radius: 0;
-    border-bottom: 2px solid #1C4E80
+    border-bottom: 2px solid #4877a7
 }
 
 .Authenticator input[type=submit] {
-    width: 50%;
-    margin: auto;
     border: none;
-    font-size: 18px;
-    background: none;
-    background-color: #1C4E80;
     border-radius: none;
-    color: white;
+    background-color: none;
     padding: 10px;
+    color: #1c1c1c;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px -5px rgba(0,0,0,0.56);
+    -webkit-box-shadow: 0px 0px 10px -5px rgba(0,0,0,0.56);
+    -moz-box-shadow: 0px 0px 10px -5px rgba(0,0,0,0.56);
+    font-weight: bold;
 }

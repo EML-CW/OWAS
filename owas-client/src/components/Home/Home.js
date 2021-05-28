@@ -21,7 +21,7 @@ const Home = (props) => {
     }
     return(
         <div className={styles.Home}>
-            <i onClick={showSidebar} className={`${styles.Burger} fas fa-bars`}></i>
+            <i onClick={showSidebar} className={`${styles.Burger} fas fa-ellipsis-v`}></i>
             {props.children}
             <ItemCard make="KTM" model="1290 SuperDuke R" year="2020" mileage="2452" displacement="1290"/>
             <ItemCard make="KTM" model="790 Adventure R" year="2019" mileage="13421" displacement="790"/>
