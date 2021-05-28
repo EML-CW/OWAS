@@ -6,14 +6,10 @@
     overflow: scroll;
 }
 
-p {
-    margin: 0;
-    padding: 0;
-}
-
 .Burger {
-    position: absolute;
-    top: 2.5%;
+    position: fixed;
+    top: 7.5%;
     font-size: 40px;
     left: 10%;
+    color: #F1F1F1;
 }

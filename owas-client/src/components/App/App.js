@@ -61,7 +61,7 @@ const App = () => {
     return (
         <div className={styles.ContentWrapper}>
                 <Home>
-                    <Header/>
+                <Header/>
                 </Home>
                 <p>Server status: {serverState._isUp ? "Server up!" : "Couldn't fetch server"}</p>
         </div>
