@@ -16,23 +16,19 @@ const App = () => {
     useEffect(() => {
         if (localStorage.getItem('token')) {
             const formData = { token: localStorage.getItem('token') };
-            axios.post(`http://localhost:42069/retrieve`, qs.stringify(formData), {headers:{'Content-Type': 'application/x-www-form-urlencoded'}})
+            axios.post(`http://${process.env.REACT_APP_HOST}/retrieve`, qs.stringify(formData), {headers:{'Content-Type': 'application/x-www-form-urlencoded'}})
             .then(res => {
-                console.log(res);
                 setUsrInfo({email: res.data.email, arToken: res.data.token});
                 localStorage.setItem('token', res.data.token);
             })
             .catch((err) => {
-                console.log(err);
                 setUsrInfo({email: '', username: '', arToken: ''});
             })
         }
     }, [])
     const onSubmitForm = (usrCreds) => {
         const formData = {email: usrCreds.email, password: usrCreds.password}
-        console.log(formData);
-        console.log(usrCreds);
-        axios.post(`http://${process.env.REACT_APP_FOO}/login`, qs.stringify(formData), {headers:{'Content-Type': 'application/x-www-form-urlencoded'}})
+        axios.post(`http://${process.env.REACT_APP_HOST}/login`, qs.stringify(formData), {headers:{'Content-Type': 'application/x-www-form-urlencoded'}})
         .then((res) => {
             setUsrInfo({email: usrCreds.email, username: 'uknwn', arToken: res.data.token});
             localStorage.setItem('token', res.data.token);
@@ -43,7 +39,7 @@ const App = () => {
         });
     }
     useEffect(() => {
-        axios.get(`http://${process.env.REACT_APP_FOO}/ping`)
+        axios.get(`http://${process.env.REACT_APP_HOST}/ping`)
         .then(res => {
             console.log("Fetched!")
             setServerState({_isUp: true})
