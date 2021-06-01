@@ -1,5 +1,8 @@
 # Users
 
+[Server Documentation](../server.md)
+
+
 > This part of the documentation will focus on the users data model. Its content may change over time due to changes in the architecture and/or due to features addition or removal.
 
 ## Database model

@@ -1,5 +1,8 @@
 # Bikes
 
+[Server Documentation](../server.md)
+
+
 > This part of the documentation will detail all of the "bikes" related part of the app. From models to reservations
 
 ## Database model
