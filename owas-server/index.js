@@ -40,9 +40,9 @@ fs.readdirSync(__dirname + '/Models').forEach((file) => {
 })
 
 // Importing Routers
-const authRouter = require('./src/authentication/auth');
-const bikeRouter = require('./src/bikehdl/bikes');
-const clientRouter = require('./src/clientshdl/clients');
+const authRouter = require('./src/routes/auth.routes');
+const bikeRouter = require('./src/routes/bikes.routes');
+const clientRouter = require('./src/routes/clients.routes');
 app.use('/', authRouter);
 app.use('/bikes', bikeRouter);
 app.use('/clients', clientRouter);
