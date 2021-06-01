@@ -1,12 +1,13 @@
 import 'semantic-ui-css/semantic.min.css'
 import AuthContainer from '../AuthContainer';
-import { Button, Card, Container, Header, Segment } from 'semantic-ui-react';
+import { Container, Header, Segment } from 'semantic-ui-react';
 import BottomMenu from '../BottomMenu';
-import BikeCard from '../BikeCard';
 import styles from "./app.module.css"
 import qs from "querystring"
 import axios from "axios"
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import ParcContent from '../ParcContent/ParcContent';
+import SettingsView from '../SettingsView/SettingsView';
 const App = () => {
     const [activeMenu, setActiveMenu] = useState("parc");
     const [usrInfo, setUsrInfo] = useState({
@@ -15,6 +16,9 @@ const App = () => {
         _arToken: ""
     });
     const [loadingLogin, setLoadingLogin] = useState(false);
+
+    const viewtitle = ["clients", "parc", "calendrier", "parametres"]
+    const views = [null, <ParcContent/>, null, <SettingsView/>]
     const setActiveMenuItem = (item) => {
         console.log(item);
         setActiveMenu(item);
@@ -78,10 +82,7 @@ const App = () => {
                 <Header color="blue" textAlign="center" as="h1">OWAS</Header>
             </div>
             <Container textAlign="center" className={styles.aled}>
-                <BikeCard/>
-                <BikeCard/>
-                <BikeCard/>
-                <BikeCard/>
+                {views[viewtitle.indexOf(activeMenu)]}
             </Container>
             <BottomMenu setActiveItem={setActiveMenuItem} activeItem={activeMenu}></BottomMenu>
         </Container>

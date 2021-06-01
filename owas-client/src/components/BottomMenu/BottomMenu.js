@@ -2,13 +2,13 @@ import { Menu, Icon } from "semantic-ui-react"
 
 const BottomMenu = (props) => {
     return (
-        <Menu color="blue" icon="labeled" size="large" fluid widths={3} className="ui bottom fixed menu">
+        <Menu color="blue" icon="labeled" size="large" fluid widths={4} className="ui bottom fixed menu">
             <Menu.Item
                 name='Clients'
                 active={props.activeItem === 'clients'}
                 onClick={() => props.setActiveItem('clients')}
             >
-                <Icon size="big" name='users' />
+                <Icon size="small" name='users' />
             Clients
             </Menu.Item>
             <Menu.Item
@@ -17,8 +17,17 @@ const BottomMenu = (props) => {
                 onClick={() => props.setActiveItem('parc')}
 
             >
-                <Icon size="big" name='motorcycle' />
+                <Icon size="small" name='motorcycle' />
             Parc
+            </Menu.Item>
+            <Menu.Item
+                name="Calendrier"
+                active={props.activeItem === 'calendrier'}
+                onClick={() => props.setActiveItem("calendrier")}
+            >
+                <Icon size="small" name="calendar"/>
+                Calendrier
+
             </Menu.Item>
             <Menu.Item
                 name='Paramètres'
@@ -26,7 +35,7 @@ const BottomMenu = (props) => {
                 onClick={() => props.setActiveItem('parametres')}
 
             >
-                <Icon size="big" name='setting' />
+                <Icon size="small" name='setting' />
             Paramètres
             </Menu.Item>
         </Menu>

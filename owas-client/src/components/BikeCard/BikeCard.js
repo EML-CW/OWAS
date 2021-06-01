@@ -7,7 +7,7 @@ const BikeCard = () => {
             <Card.Header>KTM 890 Duke</Card.Header>
             <Card.Meta>4201km</Card.Meta>
             <Card.Description>
-                Cylindrée: 890km
+                Cylindrée: 890cc
             </Card.Description>
         </Card.Content>
         <Card.Content extra>
