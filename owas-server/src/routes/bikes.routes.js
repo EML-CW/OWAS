@@ -1,6 +1,7 @@
 const express = require('express');
 const Router = express.Router();
 const mongoose = require('mongoose');
+const mongoWrapper = require('../services/mongo.service');
 const bodyParser = require('body-parser');
 const token = require('../middlewares/tokencheck.middleware');
 
@@ -15,23 +16,19 @@ Router.post('/newbike', token.tokenCheck, (req,res) => {
         res.status(400).send({status: 400, message: "Bad request"});
         return;
     }
-    const bikeModel = mongoose.model('bikes');
-    const newBike = new bikeModel({
+    mongoWrapper.newEntry("bikes", {
         _bikeMake: req.body.make,
         _year: req.body.year,
         _bikeModel: req.body.model,
         _displacement: req.body.displacement,
         _priceArray: [],
         _mileage: req.body.mileage
-    });
-    newBike.save((err) => {
-        if (err) {
-            res.status(500).send({status: 500, message: 'internal server error'});
-            return;
-        } else {
-            res.status(200).send({status: 200, message: 'Bike created!'});
+    }, (success) => {
+        if (success) {
+            res.status(200).send({stauts: 200, message:"ok"});
             return;
         }
+        res.status(500).send({status: 500, messagze: "Internal server error"});
     });
 });
 
@@ -40,15 +37,13 @@ Router.post('/deletebike', token.tokenCheck, (req,res) => {
         res.status(400).send({status: 400, message: "Bad request"});
         return;
     }
-    mongoose.model('bikes').deleteOne({_bikeMake: req.body.make, _bikeModel: req.body.model}, (err) => {
-        if (!err) {
+    mongoWrapper.deleteOne("bikes", {_bikeMake: req.body.make, _bikeModel: req.body.model}, (success) => {
+        if (success) {
             res.status(200).send({status: 200, message:"ok"});
             return;
-        } else {
-            res.status(404).send({status: 404, message: "Could not find the bike to delete"});
-            return;
         }
-    })
+        res.status(404).send({status: 404, message: "Could not find the bike to delete"});
+    });
 })
 
 module.exports = Router;

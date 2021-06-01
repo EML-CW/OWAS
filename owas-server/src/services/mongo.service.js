@@ -28,8 +28,17 @@ const findAll = (model, cb) => {
     })
 }
 
+const deleteOne = (model, conditionData, cb) => {
+    mongoose.model(model).deleteOne(conditionData, (err) => {
+        if (err)
+            cb(false);
+        cb(true);
+    })
+}
+
 module.exports = {
     findOne: findOne,
+    deleteOne: deleteOne,
     findAll: findAll,
     newEntry: newEntry
 }
