@@ -3,7 +3,7 @@ const Router = express.Router();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const crypto = require('crypto');
-const tokenhdl = require('../../Utils/TokenHdl');
+const tokenhdl = require('../services/token.service');
 const str = require('@supercharge/strings');
 
 Router.use((req,res,next) => {
