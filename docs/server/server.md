@@ -16,7 +16,7 @@ Mongoose is wrapper in a custom wrapper that makes the calls to the database mor
 > You can follow those links to get to the other parts of the documentation
 
 
-- [ReadMe](../../README.md)
+- [Readme](../../README.md)
     - [Server Documentation](./server.md)
         - [Data format - Users](dataFormat/users.md)
         - [Data format - reservations](dataFormat/reservations.md)
