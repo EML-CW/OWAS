@@ -1,16 +1,7 @@
-@font-face {
-  font-family: Yantramanav;
-    src: url('./fonts/Yantramanav-Regular.ttf');
-  }
-@font-face {
-  font-family: Dosis;
-    src: url('./fonts/Dosis-Regular.ttf');
-}
 body {
   margin: 0;
   background-color: #d6d6d6;
   color: black;
-  font-family: Yantramanav;
   padding: 0;
   height: 100vh;
   max-height: 100vh;

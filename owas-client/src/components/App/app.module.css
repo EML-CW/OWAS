@@ -1,4 +1,13 @@
-.ContentWrapper {
-    height: 100vh;
+.Card {
+    width: 90%;
+    margin: auto;
+}
+
+.header {
+    padding: 10px;
     text-align: center;
+}
+
+.aled {
+    padding: 0 0 30% 0;
 }
