@@ -52,5 +52,5 @@ app.get('/ping', (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`~~ OWAS v0.1 up and running on http://localhost:${port}`);
+    console.log(`~~ OWAS v0.2 up and running on http://localhost:${port}`);
 })
