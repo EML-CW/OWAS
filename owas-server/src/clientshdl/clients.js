@@ -44,15 +44,14 @@ Router.get('/fetchclientlist', (req,res) => {
         res.status(400).send({status: 400, message: "Bad request"});
         return;
     }
-    mongoose.model('users').findOne({_arToken: req.body.token}, (err, user) => {
+    mongoose.model('users').findOne({_arToken: req.query.token}, (err, user) => {
         if (!user || err) {
             res.status(500).send({status: 500, message: 'Could not retrieve the user with the specified token'});
             return;
         }
     })
     mongoose.model('clients').find((err, list) => {
-        console.log(list);
-        res.status(200).send({status: 200, message: 'Ok', list: {}});
+        res.status(200).send({status: 200, message: 'Ok', clientList: {list}});
         return;
     })
 })
