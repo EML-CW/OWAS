@@ -57,7 +57,7 @@ Router.post('/login', (req,res) => {
             const newToken = tokenhdl.genToken();
             user._arToken = newToken;
             user.save();
-            res.status(200).send({status: 200, message: 'Logged in!', token: newToken, activeServices: user._tokens, username: user._username});
+            res.status(200).send({status: 200, message: 'Logged in!', _arToken: newToken, username: user._username});
             console.log(`[✅] - Logged in!`)
         }
     })
