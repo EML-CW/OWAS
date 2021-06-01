@@ -1,13 +1,13 @@
 import { Button, Card } from 'semantic-ui-react'
 
-const BikeCard = () => {
+const BikeCard = (props) => {
     return (
         <Card fluid color="blue">
         <Card.Content>
-            <Card.Header>KTM 890 Duke</Card.Header>
-            <Card.Meta>4201km</Card.Meta>
+            <Card.Header>{props.title}</Card.Header>
+            <Card.Meta>{props.mileage}km</Card.Meta>
             <Card.Description>
-                Cylindrée: 890cc
+                Cylindrée: {props.displacement}cc
             </Card.Description>
         </Card.Content>
         <Card.Content extra>

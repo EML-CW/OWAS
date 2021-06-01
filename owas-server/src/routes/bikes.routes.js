@@ -32,6 +32,21 @@ Router.post('/newbike', token.tokenCheck, (req,res) => {
     });
 });
 
+Router.get('/fetchbikes', token.tokenCheck, (req, res) => {
+    if (!req.query.token) {
+        res.status(400).send({status: 400, message: "Bad request"});
+        return;
+    }
+    mongoWrapper.findAll("bikes", (list) => {
+        if (!list) {
+            res.status(500).send({status: 500, message:"An error occurred"});
+            return;
+        }
+        res.status(200).send({status: 200, message:"ok", list: list})
+        return;
+    })
+})
+
 Router.post('/deletebike', token.tokenCheck, (req,res) => {
     if (!req.body.make || !req.body.model || !req.body.token) {
         res.status(400).send({status: 400, message: "Bad request"});

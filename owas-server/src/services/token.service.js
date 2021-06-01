@@ -3,7 +3,7 @@ const str = require('@supercharge/strings');
 
 const genNewToken = () => {
     let newToken = crypto.createHash('sha256').update(str.random(10)).digest('base64');
-    while (str(newToken).contains('+'))
+    while (str(newToken).contains(['+','/']))
         newToken = crypto.createHash('sha256').update(str.random(10)).digest('base64');
     return (newToken);
 }

@@ -5,7 +5,7 @@ import BottomMenu from '../BottomMenu';
 import styles from "./app.module.css"
 import qs from "querystring"
 import axios from "axios"
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ParcContent from '../ParcContent/ParcContent';
 import SettingsView from '../SettingsView/SettingsView';
 const App = () => {
@@ -18,7 +18,7 @@ const App = () => {
     const [loadingLogin, setLoadingLogin] = useState(false);
 
     const viewtitle = ["clients", "parc", "calendrier", "parametres"]
-    const views = [null, <ParcContent/>, null, <SettingsView/>]
+    const views = [null, <ParcContent usrInfo={usrInfo}/>, null, <SettingsView/>]
     const setActiveMenuItem = (item) => {
         console.log(item);
         setActiveMenu(item);
