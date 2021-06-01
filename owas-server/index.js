@@ -42,8 +42,10 @@ fs.readdirSync(__dirname + '/Models').forEach((file) => {
 // Importing Routers
 const authRouter = require('./src/authentication/auth');
 const bikeRouter = require('./src/bikehdl/bikes');
+const clientRouter = require('./src/clientshdl/clients');
 app.use('/', authRouter);
 app.use('/bikes', bikeRouter);
+app.use('/clients', clientRouter);
 
 // Sanity check
 app.get('/ping', (req, res) => {
