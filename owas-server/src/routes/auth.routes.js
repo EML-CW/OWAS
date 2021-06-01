@@ -1,6 +1,6 @@
 const express = require('express');
 const Router = express.Router();
-const mongoose = require('mongoose');
+const mongoWrapper = require('../services/mongo.service');
 const bodyParser = require('body-parser');
 const crypto = require('crypto');
 const tokenhdl = require('../services/token.service');
@@ -20,27 +20,22 @@ Router.post('/register', (req, res) => {
         console.log(`[❌] - /register -> Bad request`);
         return;
     }
-    mongoose.model('users').findOne({_username: req.body.username}, (err, user) => {
+    mongoWrapper.findOne("users", {_email: req.body.email}, (err, user) => {
         if (user) {
             res.status(402).send({status: 402, message: 'User already exists'});
             return;
         }
         const pwdHash = crypto.createHash('sha256').update(req.body.password).digest('base64');
-        const userModel = mongoose.model('users');
-        const newUser = new userModel({
+        mongoWrapper.newEntry("users", {
             _username: req.body.username,
             _email: req.body.email,
-            _password: pwdHash,
-            _arToken: crypto.createHash('sha256').update(str.random(10)).digest('base64')
-        })
-        newUser.save((err) => {
-            if (err) {
-                res.status(500).send({status: 500, message: 'internal server error'});
-                return;
-            } else {
-                res.status(200).send({status: 200, message: 'User created', token: newUser._token});
+            _password: pwdHash
+        }, (success) => {
+            if (success) {
+                res.status(200).send({status: 200, message: "ok"});
                 return;
             }
+            res.status(500).send({status: 500, message: "An error occurred"});
         })
     })
 });
@@ -51,7 +46,7 @@ Router.post('/login', (req,res) => {
         console.log(`[❌] - /login -> Bad request`);
         return;
     }
-    mongoose.model('users').findOne({_email: req.body.email}, (err, user) => {
+    mongoWrapper.findOne("users", {_email: req.body.email}, (err, user) => {
         if (!user) {
             res.status(404).send({status: 400, message: 'User not found'});
             return;
@@ -73,7 +68,7 @@ Router.post('/retrieve', (req, res) => {
         res.status(400).send({status: 400, message: 'Bad request'});
         return;
     }
-    mongoose.model('users').findOne({_arToken: req.body.token}, (err, user) => {
+    mongoWrapper.findOne("users", {_arToken: req.body.token}, (err, user) => {
         if (!user || err) {
             res.status(404).send({status: 404, message: 'Could not retrieve the user with the specified token'});
             return;

@@ -8,7 +8,7 @@ const findOne = (model, conditionData, cb) => {
 
 const newEntry = (model, newEntryObject, cb) => {
     const newEntryModel = mongoose.model(model);
-    const newEntryData = new newEntryModel({newEntryObject});
+    const newEntryData = new newEntryModel(newEntryObject);
     newEntryData.save((err) => {
         if (err) {
             cb(false);
