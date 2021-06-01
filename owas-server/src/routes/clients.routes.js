@@ -1,6 +1,6 @@
 const express = require('express');
 const Router = express.Router();
-const mongoose = require('mongoose');
+const mongoWrapper = require('../services/mongo.service')
 const bodyParser = require('body-parser');
 const token = require('../middlewares/tokencheck.middleware');
 
@@ -16,23 +16,19 @@ Router.post('/newclient', token.tokenCheck, (req, res) => {
         res.status(400).send({status: 400, message: "Bad request"});
         return;
     }
-    const clientSchema = mongoose.model('clients');
-    const newClient = new clientSchema({
+    mongoWrapper.newEntry("clients", {
         _clientName: req.body.clientName,
         _clientLastName: req.body.clientLastName,
         _clientStreet: req.body.clientStreet,
         _clientCity: req.body.clientCity,
         _clientZIP: req.body.clientZIP
-    })
-    newClient.save((err) => {
-        if (err) {
-            res.status(500).send({status: 500, message: 'internal server error'});
-            return;
-        } else {
-            res.status(200).send({status: 200, message: 'Client created!'});
+    }, (success) => {
+        if (success) {
+            res.status(200).send({status: 200, message: "ok"});
             return;
         }
-    });
+        res.status(500).send({status: 500, message: "An error occurred"});
+    })
 })
 
 Router.get('/fetchclientlist', token.tokenCheck, (req,res) => {
@@ -40,7 +36,7 @@ Router.get('/fetchclientlist', token.tokenCheck, (req,res) => {
         res.status(400).send({status: 400, message: "Bad request"});
         return;
     }
-    mongoose.model('clients').find((err, list) => {
+    mongoWrapper.findAll("clients", (list) => {
         res.status(200).send({status: 200, message: 'Ok', clientList: {list}});
         return;
     })

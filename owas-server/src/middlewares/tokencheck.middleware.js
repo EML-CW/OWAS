@@ -1,7 +1,7 @@
-const mongoose = require('mongoose')
+const mongoWrapper = require("../services/mongo.service");
 
 const tokenCheck = (req, res, next) => {
-mongoose.model('users').findOne({_arToken: req.body.token}, (err, user) => {
+mongoWrapper.findOne("users", {_arToken: req.body.token || req.query.token}, (err, user) => {
     if (!user || err) {
         res.status(500).send({status: 500, message: 'Could not retrieve the user with the specified token'});
         return;
