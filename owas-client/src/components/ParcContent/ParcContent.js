@@ -26,29 +26,43 @@ const ParcContent = (props) => {
     const [activeItem, setActiveItem] = useState("garage");
     const [bikeList, setBikeList] = useState([]);
     const [segmentLoadingState, setSegmentLoadingState] = useState(true);
+    const [loadBikes, setLoadBikes] = useState(true);
     useEffect(() => {
         let bikeArray = [];
+        if (loadBikes === false)
+            return;
         setSegmentLoadingState(true);
-        console.log(`http://192.168.1.103:42069/bikes/fetchbikes?token=${props.usrInfo._arToken}`)
         axios.get(`http://192.168.1.103:42069/bikes/fetchbikes?token=${props.usrInfo._arToken}`)
         .then(res => {
             console.log(res.data)
             console.log(res.data.list.length)
             bikeArray = res.data.list.map((bike) => {
-                return (<BikeCard key={bike._id} mileage={bike._mileage} displacement={bike._displacement} title={`${bike._bikeMake} ${bike._bikeModel}`}/>)
+                return (<BikeCard key={bike._id}
+                                setSegmentLoadingState={setSegmentLoadingState}
+                                setLoadBikes={setLoadBikes}
+                                usrInfo={props.usrInfo}
+                                id={bike._id}
+                                mileage={bike._mileage}
+                                displacement={bike._displacement}
+                                title={`${bike._bikeMake}
+                                ${bike._bikeModel}`}
+                                make={bike._bikeMake}
+                                model={bike._bikeModel}/>)
             })
             setBikeList(bikeArray);
             setSegmentLoadingState(false);
+            setLoadBikes(false);
         })
         .catch((err) => {
-            setSegmentLoadingState(false)
+            setSegmentLoadingState(false);
+            setLoadBikes(false);
         })
 
-    }, [setBikeList, props.usrInfo._arToken])
+    }, [setBikeList, props.usrInfo, setLoadBikes, loadBikes])
     return (
         <Segment basic loading={segmentLoadingState}>
             <ParcContentMenu activeItem={activeItem} setActiveItem={setActiveItem}/>
-            <Button icon basic color="blue">
+            <Button onClick={() => props.setActiveMenu("newvehicule")} icon basic color="blue">
                 Nouvelle moto<Icon name="plus" />
             </Button>
             {bikeList}

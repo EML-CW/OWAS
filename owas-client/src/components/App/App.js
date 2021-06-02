@@ -8,6 +8,7 @@ import axios from "axios"
 import { useEffect, useState } from 'react';
 import ParcContent from '../ParcContent/ParcContent';
 import SettingsView from '../SettingsView/SettingsView';
+import NewVehiculeDialog from '../NewVehiculeDialog/NewVehiculeDialog';
 const App = () => {
     const [activeMenu, setActiveMenu] = useState("parc");
     const [usrInfo, setUsrInfo] = useState({
@@ -17,8 +18,8 @@ const App = () => {
     });
     const [loadingLogin, setLoadingLogin] = useState(false);
 
-    const viewtitle = ["clients", "parc", "calendrier", "parametres"]
-    const views = [null, <ParcContent usrInfo={usrInfo}/>, null, <SettingsView/>]
+    const viewtitle = ["clients", "parc", "calendrier", "parametres", "newvehicule"]
+    const views = [null, <ParcContent setActiveMenu={setActiveMenu} usrInfo={usrInfo}/>, null, <SettingsView/>, <NewVehiculeDialog token={usrInfo._arToken} setActiveMenu={setActiveMenu}/>]
     const setActiveMenuItem = (item) => {
         console.log(item);
         setActiveMenu(item);
