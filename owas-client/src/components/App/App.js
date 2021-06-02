@@ -19,7 +19,7 @@ const App = () => {
     const [loadingLogin, setLoadingLogin] = useState(false);
 
     const viewtitle = ["clients", "parc", "calendrier", "parametres", "newvehicule"]
-    const views = [null, <ParcContent setActiveMenu={setActiveMenu} usrInfo={usrInfo}/>, null, <SettingsView/>, <NewVehiculeDialog token={usrInfo._arToken} setActiveMenu={setActiveMenu}/>]
+    const views = [null, <ParcContent setActiveMenu={setActiveMenu} usrInfo={usrInfo}/>, null, <SettingsView setUsrInfo={setUsrInfo}/>, <NewVehiculeDialog token={usrInfo._arToken} setActiveMenu={setActiveMenu}/>]
     const setActiveMenuItem = (item) => {
         console.log(item);
         setActiveMenu(item);

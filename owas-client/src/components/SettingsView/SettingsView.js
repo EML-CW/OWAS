@@ -1,6 +1,14 @@
 import { Segment, Container, Button, Icon } from "semantic-ui-react";
 
 const SettingsView = (props) => {
+    const logOut = () => {
+        props.setUsrInfo({
+            _username: "",
+            _email: "",
+            _arToken: ""
+        })
+        localStorage.clear();
+    }
     const host = process.env.REACT_APP_HOST;
     return (
         <Container>
@@ -12,7 +20,7 @@ const SettingsView = (props) => {
         <Segment text color="grey">
             Server host: { host }
         </Segment>
-        <Button fluid color="red" basic icon>
+        <Button onClick={logOut} fluid color="red" basic icon>
             Se déconnecter
             <Icon name="sign-out"/>
         </Button>

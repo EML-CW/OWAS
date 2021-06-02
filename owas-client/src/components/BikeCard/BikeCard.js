@@ -41,17 +41,17 @@ const BikeCard = (props) => {
     return (
         <Card fluid color="blue">
         <Card.Content>
-            <Form>
-                <Form.Field size="big">
+            <Form size="large">
+                <Form.Field>
                 <input value={props.make}/>
                 </Form.Field>
-                <Form.Field size="big">
+                <Form.Field>
                 <input value={props.model}/>
                 </Form.Field>
-                <Form.Field size="big">
+                <Form.Field>
                 <input value={props.mileage}/>
                 </Form.Field>
-                <Form.Field size="big">
+                <Form.Field>
                 <input value={props.displacement}/>
                 </Form.Field>
             </Form>

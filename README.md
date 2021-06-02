@@ -25,13 +25,13 @@ Organisation Web App Service
     - [ ] User creation
     - [ ] User deletion
     - [x] User login
-    - [ ] User logout
+    - [x] User logout
     - [x] User log back in (token)
 - Bikes
-    - [ ] Bike display
-    - [ ] Bike display (Dynamic)
-    - [ ] Bike creation
-    - [ ] Bike deletion
+    - [x] Bike display
+    - [x] Bike display (Dynamic)
+    - [x] Bike creation
+    - [x] Bike deletion
     - [ ] Bike reservation
 - Customers
     - [ ] Customer creation
