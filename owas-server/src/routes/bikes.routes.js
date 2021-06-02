@@ -48,11 +48,11 @@ Router.get('/fetchbikes', token.tokenCheck, (req, res) => {
 })
 
 Router.post('/deletebike', token.tokenCheck, (req,res) => {
-    if (!req.body.make || !req.body.model || !req.body.token) {
+    if (!req.body.id || !req.body.token) {
         res.status(400).send({status: 400, message: "Bad request"});
         return;
     }
-    mongoWrapper.deleteOne("bikes", {_bikeMake: req.body.make, _bikeModel: req.body.model}, (success) => {
+    mongoWrapper.deleteOne("bikes", {_id: req.body.id}, (success) => {
         if (success) {
             res.status(200).send({status: 200, message:"ok"});
             return;
