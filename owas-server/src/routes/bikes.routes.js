@@ -50,6 +50,7 @@ Router.get('/fetchbikes', token.tokenCheck, (req, res) => {
 Router.post('/editbike', token.tokenCheck, (req,res) => {
     if (!req.body.token || !req.body.id || !req.body.make || !req.body.model || !req.body.mileage || !req.body.displacement) {
         res.status(400).send({status: 400, message:"Bad request"});
+        console.log(req.body);
         return;
     }
     const updatedValues = {
@@ -58,7 +59,7 @@ Router.post('/editbike', token.tokenCheck, (req,res) => {
         _displacement: req.body.displacement,
         _mileage: req.body.mileage
     }
-    mongoWrapper.updateById("bikes", req.body.id, updatedValues, (res, err) => {
+    mongoWrapper.updateById("bikes", req.body.id, updatedValues, (result, err) => {
         if (err) {
             res.status(500).send({status: 500, message: "Internal server error", error: err});
             return;

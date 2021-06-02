@@ -6,7 +6,7 @@ const findOne = (model, conditionData, cb) => {
     })
 }
 
-const updateById = (model, id, updatedvalue, cb => {
+const updateById = (model, id, updatedvalue, cb) => {
     mongoose.model(model).updateOne({_id: id}, updatedvalue, (err, res) => {
         if (err) {
             cb(false, err);
@@ -14,7 +14,7 @@ const updateById = (model, id, updatedvalue, cb => {
         }
         cb(true, null);
     })
-})
+}
 
 const newEntry = (model, newEntryObject, cb) => {
     const newEntryModel = mongoose.model(model);
