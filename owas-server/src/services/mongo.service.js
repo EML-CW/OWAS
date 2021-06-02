@@ -6,6 +6,16 @@ const findOne = (model, conditionData, cb) => {
     })
 }
 
+const updateById = (model, id, updatedvalue, cb => {
+    mongoose.model(model).updateOne({_id: id}, updatedvalue, (err, res) => {
+        if (err) {
+            cb(false, err);
+            return;
+        }
+        cb(true, null);
+    })
+})
+
 const newEntry = (model, newEntryObject, cb) => {
     const newEntryModel = mongoose.model(model);
     const newEntryData = new newEntryModel(newEntryObject);
@@ -40,5 +50,6 @@ module.exports = {
     findOne: findOne,
     deleteOne: deleteOne,
     findAll: findAll,
-    newEntry: newEntry
+    newEntry: newEntry,
+    updateById: updateById
 }
