@@ -47,6 +47,26 @@ Router.get('/fetchbikes', token.tokenCheck, (req, res) => {
     })
 })
 
+Router.post('/editbike', token.tokenCheck, (req,res) => {
+    if (!req.body.token || !req.body.id || !req.body.make || !req.body.model || !req.body.mileage || !req.body.displacement) {
+        res.status(400).send({status: 400, message:"Bad request"});
+        return;
+    }
+    const updatedValues = {
+        _bikeMake: req.body.make,
+        _bikeModel: req.body.model,
+        _displacement: req.body.displacement,
+        _mileage: req.body.mileage
+    }
+    mongoWrapper.updateById("bikes", req.body.id, updatedValues, (res, err) => {
+        if (err) {
+            res.status(500).send({status: 500, message: "Internal server error", error: err});
+            return;
+        }
+        res.status(200).send({status: 200, message: "ok"});
+    })
+})
+
 Router.post('/deletebike', token.tokenCheck, (req,res) => {
     if (!req.body.id || !req.body.token) {
         res.status(400).send({status: 400, message: "Bad request"});
