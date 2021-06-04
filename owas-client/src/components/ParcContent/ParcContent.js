@@ -35,8 +35,6 @@ const ParcContent = (props) => {
         setSegmentLoadingState(true);
         axios.get(`http://${host}/bikes/fetchbikes?token=${props.usrInfo._arToken}`)
         .then(res => {
-            console.log(res.data)
-            console.log(res.data.list.length)
             bikeArray = res.data.list.map((bike) => {
                 return (<BikeCard key={bike._id}
                                 setSegmentLoadingState={setSegmentLoadingState}

@@ -30,7 +30,6 @@ const App = () => {
                     <NewVehiculeDialog token={usrInfo._arToken} setActiveMenu={setActiveMenu} />,
                     <NewCustomerDialog token={usrInfo._arToken} setActiveMenu={setActiveMenu} />]
     const setActiveMenuItem = (item) => {
-        console.log(item);
         setActiveMenu(item);
     }
     useEffect(() => {
@@ -59,7 +58,6 @@ const App = () => {
         }
         axios.post(`http://${host}/login`, qs.stringify(formData), { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
             .then((res) => {
-                console.log(res.data)
                 setLoadingLogin(false);
                 setUsrInfo({
                     _username: res.data.username,

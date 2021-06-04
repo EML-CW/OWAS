@@ -11,23 +11,31 @@ const CalendarView = (props) =>{
         const host = process.env.REACT_APP_HOST;
         setLoadingState(true);
         let reservationsArray = [];
-        axios.get(`http://${host}/reservations/getreservations?token=${props.token}`)
-            .then((res) => {
-                console.log(res.data.list);
-                reservationsArray = res.data.list.map((data) => {
-                    return (<ReservationCard bikeId={data._bikeId}
-                        token={props.token}
-                        key={data._id}
-                        reservationId={data._id}
-                        clientId={data._clientId}
-                        from={data._from}
-                        to={data._to} />)
+
+            axios.get(`http://${host}/bikes/fetchbikes?token=${props.token}`)
+            .then((resBikes) => {
+                axios.get(`http://${host}/clients/fetchclientlist?token=${props.token}`)
+                .then((resClients) => {
+                    axios.get(`http://${host}/reservations/getreservations?token=${props.token}`)
+                    .then((res) => {
+                        reservationsArray = res.data.list.map((data) => {
+                            return (<ReservationCard bikeId={data._bikeId}
+                                token={props.token}
+                                bikeList={resBikes.data.list}
+                                clientList={resClients.data.clientList}
+                                key={data._id}
+                                reservationId={data._id}
+                                clientId={data._clientId}
+                                from={data._from}
+                                to={data._to} />)
+                        })
+                        setReservations(reservationsArray);
+                        setLoadingState(false);
+                    })
+                    .then(err => {
+                        setLoadingState(false);
+                    })
                 })
-                setReservations(reservationsArray);
-                setLoadingState(false);
-            })
-            .then(err => {
-                setLoadingState(false);
             })
     }, [setLoadingState, setReservations, props.token])
     return (
