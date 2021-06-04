@@ -120,7 +120,7 @@ const CustomerCard = (props) => {
 
     if (!editState)
         return (
-            <Card fluid>
+            <Card fluid color="blue">
                 <Card.Content>
                     <Card.Header>
                         {`${props.clientName} ${props.clientLastName}`}
@@ -143,7 +143,7 @@ const CustomerCard = (props) => {
         )
     return (
         <Segment basic fluid loading={loadingState}>
-            <Card fluid>
+            <Card fluid color="blue">
                 <Card.Content>
                     <Card.Header>
                         Editer
