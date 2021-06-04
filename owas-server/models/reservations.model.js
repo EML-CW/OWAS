@@ -2,8 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const reservationsSchema = Schema({
-    _bikeID: String,
-    _bikeReservations: Array
+    _bikeId: String,
+    _clientId: String,
+    _from: Date,
+    _to: Date
 })
 
 mongoose.model('reservations', reservationsSchema);
