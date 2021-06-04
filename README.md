@@ -3,6 +3,7 @@ Organisation Web App Service
 
 
 [Server Documentation](docs/server/server.md)
+[Client Documentation](docs/client/client.md)
 
 ## Server features
 
