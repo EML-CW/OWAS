@@ -8,6 +8,7 @@ import axios from "axios"
 import { useEffect, useState } from 'react';
 import ParcContent from '../ParcContent/ParcContent';
 import SettingsView from '../SettingsView/SettingsView';
+import CalendarView from '../CalendarView'
 import NewVehiculeDialog from '../NewVehiculeDialog/NewVehiculeDialog';
 import CustomersView from '../CustomersView/CustomersView';
 import NewCustomerDialog from '../NewCustomerDialog/NewCustomerDialog';
@@ -24,7 +25,7 @@ const App = () => {
     const viewtitle = ["clients", "parc", "calendrier", "parametres", "newvehicule", "newcustomer"]
     const views = [<CustomersView setActiveMenu={setActiveMenu} token={usrInfo._arToken} />,
                     <ParcContent setActiveMenu={setActiveMenu} usrInfo={usrInfo} />,
-                        null,
+                    <CalendarView/>,
                     <SettingsView setUsrInfo={setUsrInfo} />,
                     <NewVehiculeDialog token={usrInfo._arToken} setActiveMenu={setActiveMenu} />,
                     <NewCustomerDialog token={usrInfo._arToken} setActiveMenu={setActiveMenu} />]
