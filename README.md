@@ -34,6 +34,7 @@ Organisation Web App Service
     - [x] Bike deletion
     - [ ] Bike reservation
 - Customers
-    - [ ] Customer creation
-    - [ ] Customer deletion
+    - [x] Customer creation
+    - [x] Customer deletion
+    - [x] Customer edition
     - [ ] Bike link with customer
