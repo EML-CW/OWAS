@@ -116,6 +116,8 @@ const BikeCard = (props) => {
         <Segment basic loading={loadingState}>
             <Card fluid color="blue">
                 <Card.Content>
+                    <Card.Header>Editer</Card.Header>
+                    <Card.Meta>Editez les champs ci-dessous puis validez</Card.Meta>
                     <Form size="large">
                         <Form.Field>
                             <input onChange={onMakeChange} defaultValue={props.make} />

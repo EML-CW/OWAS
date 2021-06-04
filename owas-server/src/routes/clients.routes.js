@@ -37,7 +37,7 @@ Router.get('/fetchclientlist', token.tokenCheck, (req,res) => {
         return;
     }
     mongoWrapper.findAll("clients", (list) => {
-        res.status(200).send({status: 200, message: 'Ok', clientList: {list}});
+        res.status(200).send({status: 200, message: 'Ok', clientList: list});
         return;
     })
 })

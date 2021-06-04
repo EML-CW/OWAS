@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import ParcContent from '../ParcContent/ParcContent';
 import SettingsView from '../SettingsView/SettingsView';
 import NewVehiculeDialog from '../NewVehiculeDialog/NewVehiculeDialog';
+import CustomersView from '../CustomersView/CustomersView';
 const App = () => {
     const [activeMenu, setActiveMenu] = useState("parc");
     const [usrInfo, setUsrInfo] = useState({
@@ -19,7 +20,7 @@ const App = () => {
     const [loadingLogin, setLoadingLogin] = useState(false);
 
     const viewtitle = ["clients", "parc", "calendrier", "parametres", "newvehicule"]
-    const views = [null, <ParcContent setActiveMenu={setActiveMenu} usrInfo={usrInfo}/>, null, <SettingsView setUsrInfo={setUsrInfo}/>, <NewVehiculeDialog token={usrInfo._arToken} setActiveMenu={setActiveMenu}/>]
+    const views = [<CustomersView token={usrInfo._arToken}/>, <ParcContent setActiveMenu={setActiveMenu} usrInfo={usrInfo}/>, null, <SettingsView setUsrInfo={setUsrInfo}/>, <NewVehiculeDialog token={usrInfo._arToken} setActiveMenu={setActiveMenu}/>]
     const setActiveMenuItem = (item) => {
         console.log(item);
         setActiveMenu(item);
