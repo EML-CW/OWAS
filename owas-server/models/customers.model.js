@@ -7,6 +7,7 @@ const clientsSchema = Schema({
     _clientStreet: String,
     _clientCity: String,
     _clientZIP: Number,
+    _clientPhone: String
 })
 
 mongoose.model('clients', clientsSchema);
