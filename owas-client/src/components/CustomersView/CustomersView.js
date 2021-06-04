@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button, Segment } from "semantic-ui-react";
-import CustomerCard from "../App/CustomerCard/CustomerCard";
+import CustomerCard from "../CustomerCard/CustomerCard";
 
 const CustomersView = (props) => {
     const [customerComponentArray, setCustomerComponentArray] = useState([]);
