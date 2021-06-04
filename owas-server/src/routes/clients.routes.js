@@ -13,6 +13,7 @@ Router.use((req, res, next) => {
 Router.post('/newclient', token.tokenCheck, (req, res) => {
     if (!req.body.token || !req.body.clientName || !req.body.clientLastName || !req.body.clientStreet ||
         !req.body.clientCity || !req.body.clientZIP || !req.body.clientPhone) {
+        console.log(req.body)
         res.status(400).send({ status: 400, message: "Bad request" });
         return;
     }

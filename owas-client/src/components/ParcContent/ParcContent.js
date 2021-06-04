@@ -28,11 +28,12 @@ const ParcContent = (props) => {
     const [segmentLoadingState, setSegmentLoadingState] = useState(true);
     const [loadBikes, setLoadBikes] = useState(true);
     useEffect(() => {
+        const host = process.env.REACT_APP_HOST
         let bikeArray = [];
         if (loadBikes === false)
             return;
         setSegmentLoadingState(true);
-        axios.get(`http://192.168.1.103:42069/bikes/fetchbikes?token=${props.usrInfo._arToken}`)
+        axios.get(`http://${host}/bikes/fetchbikes?token=${props.usrInfo._arToken}`)
         .then(res => {
             console.log(res.data)
             console.log(res.data.list.length)

@@ -32,7 +32,7 @@ const CustomersView = (props) => {
     }, [setCustomerComponentArray, props.token])
     return (
         <Segment basic loading={loadingState}>
-            <Button basic color="blue">Nouveau client</Button>
+            <Button basic color="blue" onClick={() => props.setActiveMenu("newcustomer")}>Nouveau client</Button>
             {customerComponentArray}
         </Segment>
     )
