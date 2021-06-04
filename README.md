@@ -15,11 +15,11 @@ Organisation Web App Service
 - Bikes
     - [x] Bike creation
     - [x] Bike deletion
-    - [ ] Bike reservation
+    - [x] Bike reservation
 - Customers
     - [x] Customer creation
     - [x] Customer deletion
-    - [ ] bike link with customer
+    - [x] bike link with customer
 
 ## Client features
 - Users
