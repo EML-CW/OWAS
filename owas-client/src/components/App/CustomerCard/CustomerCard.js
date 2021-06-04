@@ -6,6 +6,88 @@ import qs from "querystring"
 const CustomerCard = (props) => {
     const [loadingState, setLoadingState] = useState(false);
     const [editState, setEditState] = useState(false)
+    const [customerInfo, setCustomerInfo] = useState({
+        clientId: props.id,
+        clientName: props.clientName,
+        clientLastName: props.clientLastName,
+        clientStreet: props.clientStreet,
+        clientCity: props.clientCity,
+        clientZIP: props.clientZIP,
+        clientPhone: props.clientPhone,
+        token: props.token
+    })
+    const onclientNameChange = (e) => {
+        setCustomerInfo({
+            clientId: customerInfo.clientId,
+            clientName: e.target.value,
+            clientLastName: customerInfo.clientLastName,
+            clientStreet: customerInfo.clientStreet,
+            clientCity: customerInfo.clientCity,
+            clientZIP: customerInfo.clientZIP,
+            clientPhone : customerInfo.clientPhone,
+            token: customerInfo.token,
+        })
+    }
+    const onclientLastNameChange = (e) => {
+        setCustomerInfo({
+            clientId: customerInfo.clientId,
+            clientName: customerInfo.clientName,
+            clientLastName: e.target.value,
+            clientStreet: customerInfo.clientStreet,
+            clientCity: customerInfo.clientCity,
+            clientZIP: customerInfo.clientZIP,
+            clientPhone : customerInfo.clientPhone,
+            token: customerInfo.token
+        })
+    }
+    const onclientCityChange = (e) => {
+        setCustomerInfo({
+            clientId: customerInfo.clientId,
+            clientName: customerInfo.clientName,
+            clientLastName: customerInfo.clientLastName,
+            clientStreet: customerInfo.clientStreet,
+            clientCity: e.target.value,
+            clientZIP: customerInfo.clientZIP,
+            clientPhone : customerInfo.clientPhone,
+            token: customerInfo.token
+        })
+    }
+    const onclientZIPChange = (e) => {
+        setCustomerInfo({
+            clientId: customerInfo.clientId,
+            clientName: customerInfo.clientName,
+            clientLastName: customerInfo.clientLastName,
+            clientStreet: customerInfo.clientStreet,
+            clientCity: customerInfo.clientCity,
+            clientZIP: e.target.value,
+            clientPhone : customerInfo.clientPhone,
+            token: customerInfo.token
+        })
+    }
+    const onclientStreetChange = (e) => {
+        setCustomerInfo({
+            clientId: customerInfo.clientId,
+            clientName: customerInfo.clientName,
+            clientLastName: customerInfo.clientLastName,
+            clientStreet: e.target.value,
+            clientCity: customerInfo.clientCity,
+            clientZIP: customerInfo.clientZIP,
+            clientPhone : e.target.value,
+            token: customerInfo.token
+        })
+    }
+    const onclientPhoneChange = (e) => {
+        setCustomerInfo({
+            clientId: customerInfo.clientId,
+            clientName: customerInfo.clientName,
+            clientLastName: customerInfo.clientLastName,
+            clientStreet: customerInfo.clientStreet,
+            clientCity: customerInfo.clientCity,
+            clientZIP: customerInfo.clientZIP,
+            clientPhone : e.target.value,
+            token: customerInfo.token
+        })
+    }
     const onClientDelete = () => {
         setLoadingState(true);
         const host = process.env.REACT_APP_HOST;
@@ -18,6 +100,22 @@ const CustomerCard = (props) => {
             .catch((err) => {
                 props.setLoadCustomers(true);
             })
+    }
+
+    const onClientEdit = () => {
+        setLoadingState(true);
+        const formData = qs.stringify(customerInfo);
+        const host = process.env.REACT_APP_HOST;
+        axios.post(`http://${host}/clients/editclient`, formData, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+        .then(res => {
+            setLoadingState(false);
+            props.setLoadCustomers(true);
+        })
+        .catch((err) => {
+            setLoadingState(false);
+            props.setLoadCustomers(true);
+        })
+        setEditState(false);
     }
 
     if (!editState)
@@ -44,7 +142,7 @@ const CustomerCard = (props) => {
             </Card>
         )
     return (
-        <Segment loading={loadingState}>
+        <Segment basic fluid loading={loadingState}>
             <Card fluid>
                 <Card.Content>
                     <Card.Header>
@@ -56,25 +154,28 @@ const CustomerCard = (props) => {
                     <Card.Description>
                         <Form size="large">
                             <Form.Field>
-                                <input defaultValue={props.clientName} />
+                                <input onChange={onclientNameChange}defaultValue={props.clientName} />
                             </Form.Field>
                             <Form.Field>
-                                <input defaultValue={props.clientLastName} />
+                                <input onChange={onclientLastNameChange}defaultValue={props.clientLastName} />
                             </Form.Field>
                             <Form.Field>
-                                <input defaultValue={props.clientStreet} />
+                                <input onChange={onclientStreetChange}defaultValue={props.clientStreet} />
                             </Form.Field>
                             <Form.Field>
-                                <input defaultValue={props.clientZIP} />
+                                <input onChange={onclientZIPChange}defaultValue={props.clientZIP} />
                             </Form.Field>
                             <Form.Field>
-                                <input defaultValue={props.clientCity} />
+                                <input onChange={onclientCityChange}defaultValue={props.clientCity} />
+                            </Form.Field>
+                            <Form.Field>
+                                <input onChange={onclientPhoneChange}defaultValue={props.clientPhone} />
                             </Form.Field>
                         </Form>
                     </Card.Description>
                 </Card.Content>
                 <Card.Content extra>
-                    <Button basic color="green" onClick={() => setEditState(true)} >Editer</Button>
+                    <Button basic color="green" onClick={onClientEdit} >Editer</Button>
                     <Button basic color="red" onClick={() => setEditState(false)}>Annuler</Button>
                 </Card.Content>
             </Card>
