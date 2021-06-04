@@ -42,9 +42,11 @@ fs.readdirSync(__dirname + '/Models').forEach((file) => {
 const authRouter = require('./src/routes/auth.routes');
 const bikeRouter = require('./src/routes/bikes.routes');
 const clientRouter = require('./src/routes/clients.routes');
+const resaRouter = require('./src/routes/resa.routes');
 app.use('/', authRouter);
 app.use('/bikes', bikeRouter);
 app.use('/clients', clientRouter);
+app.use('/reservations', resaRouter);
 
 // Sanity check
 app.get('/ping', (req, res) => {

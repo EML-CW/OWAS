@@ -25,7 +25,7 @@ const App = () => {
     const viewtitle = ["clients", "parc", "calendrier", "parametres", "newvehicule", "newcustomer"]
     const views = [<CustomersView setActiveMenu={setActiveMenu} token={usrInfo._arToken} />,
                     <ParcContent setActiveMenu={setActiveMenu} usrInfo={usrInfo} />,
-                    <CalendarView/>,
+                    <CalendarView token={usrInfo._arToken}/>,
                     <SettingsView setUsrInfo={setUsrInfo} />,
                     <NewVehiculeDialog token={usrInfo._arToken} setActiveMenu={setActiveMenu} />,
                     <NewCustomerDialog token={usrInfo._arToken} setActiveMenu={setActiveMenu} />]

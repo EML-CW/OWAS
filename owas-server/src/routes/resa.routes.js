@@ -16,11 +16,13 @@ Router.post('/newreservation', token.tokenCheck, (req, res) => {
         res.status(400).send({status: 400, message: "Bad request"});
         return;
     }
+    const from = new Date(req.body.from);
+    const to = new Date(req.body.to);
     mongoWrapper.newEntry('reservations', {
         _bikeId: req.body.bikeId,
         _clientId: req.body.clientId,
-        _from: req.body.from,
-        _to: req.body.to
+        _from: new Date(req.body.from),
+        _to: new Date(req.body.to)
     }, (success) => {
         if (success) {
             res.status(200).send({status: 200, message: "Ok."})
@@ -46,9 +48,10 @@ Router.post('/deletereservation', token.tokenCheck, (req,res) => {
     })
 })
 
-Router.post('updatereservation', token.tokenCheck, (req, res) => {
+Router.post('/updatereservation', token.tokenCheck, (req, res) => {
     if (!req.body.token || !req.body.reservationId || !req.body.clientId || !req.body.bikeId || !req.body.from || !req.body.to) {
         res.status(400).send({status: 400, message: "Bad request"});
+        return;
     }
     mongoWrapper.updateById('reservations', req.body.reservationId, {
         _bikeId: req.body.bikeId,
@@ -60,3 +63,18 @@ Router.post('updatereservation', token.tokenCheck, (req, res) => {
         return;
     })
 })
+
+Router.get('/getreservations', token.tokenCheck, (req,res) => {
+    if (!req.query.token) {
+        console.log(req.query.token);
+        res.status(400).send({status: 400, message: "Bad request"});
+        return;
+    }
+    console.log(req.query.token);
+    mongoWrapper.findAll('reservations', (list) => {
+        res.status(200).send({status: 200, message: "ok", list: list});
+        return;
+    })
+})
+
+module.exports = Router;

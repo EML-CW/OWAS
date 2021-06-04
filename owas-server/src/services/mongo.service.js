@@ -21,6 +21,7 @@ const newEntry = (model, newEntryObject, cb) => {
     const newEntryData = new newEntryModel(newEntryObject);
     newEntryData.save((err) => {
         if (err) {
+            console.log(err);
             cb(false);
             return;
         }
