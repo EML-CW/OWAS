@@ -33,14 +33,14 @@ Organisation Web App Service
     - [x] Bike display (Dynamic)
     - [x] Bike creation
     - [x] Bike deletion
-    - [ ] Bike reservation
+    - [x] Bike reservation
 - Customers
     - [x] Customer creation
     - [x] Customer deletion
     - [x] Customer edition
-    - [ ] Bike link with customer
+    - [x] Bike link with customer
 - Reservations
     - [x] Reservation edition
     - [x] Reservation deletion
     - [x] Reservation display
-    - [ ] Reservation creation
+    - [x] Reservation creation

@@ -12,6 +12,7 @@ import CalendarView from '../CalendarView'
 import NewVehiculeDialog from '../NewVehiculeDialog/NewVehiculeDialog';
 import CustomersView from '../CustomersView/CustomersView';
 import NewCustomerDialog from '../NewCustomerDialog/NewCustomerDialog';
+import NewReservationDialog from '../NewReservationDialog';
 
 const App = () => {
     const [activeMenu, setActiveMenu] = useState("parc");
@@ -22,13 +23,14 @@ const App = () => {
     });
     const [loadingLogin, setLoadingLogin] = useState(false);
 
-    const viewtitle = ["clients", "parc", "calendrier", "parametres", "newvehicule", "newcustomer"]
+    const viewtitle = ["clients", "parc", "calendrier", "parametres", "newvehicule", "newcustomer", "newreservation"]
     const views = [<CustomersView setActiveMenu={setActiveMenu} token={usrInfo._arToken} />,
                     <ParcContent setActiveMenu={setActiveMenu} usrInfo={usrInfo} />,
-                    <CalendarView token={usrInfo._arToken}/>,
+                    <CalendarView setActiveMenu={setActiveMenu} token={usrInfo._arToken}/>,
                     <SettingsView setUsrInfo={setUsrInfo} />,
                     <NewVehiculeDialog token={usrInfo._arToken} setActiveMenu={setActiveMenu} />,
-                    <NewCustomerDialog token={usrInfo._arToken} setActiveMenu={setActiveMenu} />]
+                    <NewCustomerDialog token={usrInfo._arToken} setActiveMenu={setActiveMenu} />,
+                    <NewReservationDialog token={usrInfo._arToken} setActiveMenu={setActiveMenu}/>]
     const setActiveMenuItem = (item) => {
         setActiveMenu(item);
     }

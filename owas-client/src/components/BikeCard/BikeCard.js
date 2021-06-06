@@ -106,7 +106,6 @@ const BikeCard = (props) => {
                 </Card.Description>
                 </Card.Content>
                 <Card.Content extra>
-                    <Button onClick={() => console.log(props.id)} size="tiny" basic color="green">Réserver</Button>
                     <Button color="blue" size="tiny" onClick={() => setEditState(true)} basic>Editer</Button>
                     <Button onClick={onDelete} size="tiny" basic color="red">Supprimer</Button>
                 </Card.Content>

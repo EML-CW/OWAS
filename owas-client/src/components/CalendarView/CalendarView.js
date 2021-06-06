@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Header, Segment } from 'semantic-ui-react'
+import { Header, Segment, Button } from 'semantic-ui-react'
 import ReservationCard from '../ReservationCard/ReservationCard'
 import axios from "axios";
 
@@ -46,6 +46,7 @@ const CalendarView = (props) =>{
     return (
         <Segment basic fluid="true" loading={loadingState}>
             <Header as="h1">Calendrier</Header>
+            <Button color="blue" basic onClick={() =>props.setActiveMenu("newreservation")}>Nouvelle réservation</Button>
             {reservations}
         </Segment>
     )
