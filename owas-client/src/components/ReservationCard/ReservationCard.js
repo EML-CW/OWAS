@@ -81,12 +81,27 @@ const ReservationCard = (props) => {
 
     const onEditSubmit = () => {
         const host = process.env.REACT_APP_HOST
-        console.log(editValues);
         const formData = qs.stringify(editValues);
         axios.post(`http://${host}/reservations/updatereservation`, formData, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+            .then((res) => {
+                props.setloadReservations(true);
+                setEditState(false);
+            })
+    }
+    const onDelete = () => {
+        const host = process.env.REACT_APP_HOST;
+        const formData = {
+            reservationId: props.reservationId,
+            token: props.token
+        }
+        axios.post(`http://${host}/reservations/deletereservation`, qs.stringify(formData), { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
         .then((res) => {
-            props.setloadReservations(true);
+            console.log(res);
             setEditState(false);
+            props.setloadReservations(true);
+        })
+        .catch(err => {
+            throw err;
         })
     }
     // Rendering card
@@ -101,37 +116,38 @@ const ReservationCard = (props) => {
                 </Card.Content>
                 <Card.Content extra>
                     <Button color="blue" onClick={() => setEditState(true)} basic>Editer</Button>
-                    <Button color="red" basic>Supprimer</Button>
+                    <Button color="red" onClick={onDelete} basic>Supprimer</Button>
                 </Card.Content>
             </Card>
         )
-    else{
+    else {
         return (
             <Card fluid color="blue">
                 <Card.Content>
                     <Card.Header>Editer</Card.Header>
                     <Card.Meta>Remplissez les champs ci-dessous et validez</Card.Meta>
                     <Form>
-                            <Form.Field>
-                                <Select onChange={onBikeChange} fluid defaultValue={bikeNode._id} placeholder="Moto" options={dropDownBikes} />
-                            </Form.Field>
-                            <Form.Field>
-                                <Select onChange={onClientChange} fluid defaultValue={clientNode._id} placeholder="Client" options={dropDownClients} />
-                            </Form.Field>
-                            <Form.Field>
-                                <Label pointing="below">Départ:</Label><Input onChange={onFromChange} fluid type="date" />
-                            </Form.Field>
-                            <Form.Field>
-                                <Label pointing="below">Arrivée:</Label><Input onChange={onToChange} defaultValue={formattedDates.to}fluid type="date" />
-                            </Form.Field>
-                        </Form>
-                    </Card.Content>
-                    <Card.Content extra>
-                        <Button color="green" onClick={onEditSubmit} basic>Valider</Button>
-                        <Button color="red" onClick={() => setEditState(false)} basic>Annuler</Button>
-                    </Card.Content>
+                        <Form.Field>
+                            <Select onChange={onBikeChange} fluid defaultValue={bikeNode._id} placeholder="Moto" options={dropDownBikes} />
+                        </Form.Field>
+                        <Form.Field>
+                            <Select onChange={onClientChange} fluid defaultValue={clientNode._id} placeholder="Client" options={dropDownClients} />
+                        </Form.Field>
+                        <Form.Field>
+                            <Label pointing="below">Départ:</Label><Input onChange={onFromChange} fluid type="date" />
+                        </Form.Field>
+                        <Form.Field>
+                            <Label pointing="below">Arrivée:</Label><Input onChange={onToChange} defaultValue={formattedDates.to} fluid type="date" />
+                        </Form.Field>
+                    </Form>
+                </Card.Content>
+                <Card.Content extra>
+                    <Button color="green" onClick={onEditSubmit} basic>Valider</Button>
+                    <Button color="red" onClick={() => setEditState(false)} basic>Annuler</Button>
+                </Card.Content>
             </Card>
-        )}
+        )
+    }
 }
 
 export default ReservationCard;
