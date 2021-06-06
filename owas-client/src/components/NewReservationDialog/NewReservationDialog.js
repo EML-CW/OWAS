@@ -7,15 +7,16 @@ const NewReservationDialog = (props) => {
     const [loadingState, setLoadingState] = useState(false);
     const [dropDownBikes, setDropDownBikes] = useState([]);
     const [dropDownClients, setDropDownClients] = useState([]);
-    const [contentLists, setContentLists] = useState({
-        bikeList: [],
-        clientList: []
-    })
+    const [contentLists, setContentLists] = useState({})
+    const [loadList, setLoadList] = useState(true);
     const [formattedDates] = useState({
         from: new Date(),
         to: new Date(),
     })
     useEffect(() => {
+        if (loadList === false) {
+            return;
+        }
         const host = process.env.REACT_APP_HOST;
         setLoadingState(true);
         axios.get(`http://${host}/bikes/fetchbikes?token=${props.token}`)
@@ -26,6 +27,7 @@ const NewReservationDialog = (props) => {
                             bikeList: resBikes.data.list,
                             clientList: res.data.clientList
                         })
+                        setLoadList(false);
                         setDropDownClients(contentLists.clientList.map(client => {
                             return ({ key: client._id, value: client._id, text: `${client._clientName} ${client._clientLastName}` })
                         }))
@@ -105,7 +107,7 @@ const NewReservationDialog = (props) => {
 
     }
     return (
-        <Segment loading={loadingState}>
+        <Segment loading={loadingState} fluid>
             <Form size="big">
                 <Form.Field>
                     <Select fluid placeholder="Moto" onChange={onBikeChange} options={dropDownBikes} />
